@@ -1,7 +1,7 @@
-var Server = require('./mock.js')
+const Server = require('./mock.js')
 
-var port = 8000;
-var myServer = new Server();
+const port = 8000;
+const myServer = new Server();
 
     myServer.connection({port: port});
     
@@ -23,4 +23,6 @@ var myServer = new Server();
     
     myServer.start(c => console.log(`server listening on port ${port}`));
     
-    myServer.get('/files/nick/me.jpg');
+    const result = myServer.get('/files/nick/me.jpg');
+
+    console.log(`Server returned ${result} when receiving GET request '/files/nick/me.jpg'`);
