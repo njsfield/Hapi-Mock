@@ -1,23 +1,26 @@
 //// Hapi Server Mock
 
-function Server (){
+class Server {
+
+constructor() {
   this.port = null;
   this.routes = [];
   this.started = false;
 }
 
+
 // Add Port
-Server.prototype.connection = function(portObj){
+connection(portObj) {
   this.port = portObj.port;
-}
+};
 
 // Add Route Object
-Server.prototype.route = function(routeObj){
+route (routeObj) {
   this.routes.push(routeObj);
-}
+};
 
 // Checks for a port and routes
-Server.prototype.start = function(cb){
+start (cb) {
   if (!this.port) {
     return 'No port specified';
   } else if (!this.routes.length) {
@@ -25,24 +28,24 @@ Server.prototype.start = function(cb){
   }
   this.started = true;
   cb();
-  
-}
+
+};
 
 // Compares array of routes against path, eventually calls the handler function provided and returns the result
-Server.prototype.get = function(path){
+get (path) {
     let selectedRoute;
     let matchCount = 0;
     let params = {};
     let requestObj = {};
     let result;
-    
+
     if (!this.started){
       return 'Server needs to be started first';
     }
     for (var route of this.routes){
       let matchPieces = route.path.split(/\/|\./);
       let pathPieces = path.split(/\/|\./);
-      
+
       // If route path is '/{.*}'
       if (matchPieces.length == 2 && matchPieces[0] === '' && /{.*\*}/.test(matchPieces[1])) {
         if (matchCount < 1) {
@@ -72,12 +75,14 @@ Server.prototype.get = function(path){
     }
     // Initialise request Obj
     requestObj['params'] = params;
-    
+
     // Use handler function to retrieve result
     selectedRoute.handler(requestObj, function(response){
       result = response;
     });
     return result;
+};
+
 }
 
 module.exports = Server;
