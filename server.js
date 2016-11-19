@@ -23,6 +23,6 @@ const myServer = new Server();
     
     myServer.start(c => console.log(`server listening on port ${port}`));
     
-    const result = myServer.get('/files/nick/me.jpg');
+    let result = myServer.get('/files/nick/me.jpg');
 
     console.log(`Server returned ${result} when receiving GET request '/files/nick/me.jpg'`);
