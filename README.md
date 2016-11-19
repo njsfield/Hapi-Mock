@@ -3,7 +3,7 @@
 In Hapi, routes that match paths with higher specificity win...
 
 Route 1 : path = '/{stuff*}'  
-Route 2 : path = '/files/{file}/me.jpg''  
+Route 2 : path = '/files/{file}/me.jpg' 
 
 Get request Path = '/file/nick/me.jpg'
 
