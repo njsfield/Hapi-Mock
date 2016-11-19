@@ -25,4 +25,4 @@ const myServer = new Server();
     
     let result = myServer.get('/files/nick/me.jpg');
 
-    console.log(`Server returned ${result} when receiving GET request '/files/nick/me.jpg'`);
+    console.log(`Server returned '${result}' when receiving GET request '/files/nick/me.jpg'`);
