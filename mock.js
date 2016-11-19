@@ -30,18 +30,18 @@ Server.prototype.start = function(cb){
 
 // Compares array of routes against path, eventually calls the handler function provided and returns the result
 Server.prototype.get = function(path){
-    var selectedRoute;
-    var matchCount = 0;
-    var params = {};
-    var requestObj = {};
-    var result;
+    let selectedRoute;
+    let matchCount = 0;
+    let params = {};
+    let requestObj = {};
+    let result;
     
     if (!this.started){
       return 'Server needs to be started first';
     }
     for (var route of this.routes){
-      var matchPieces = route.path.split(/\/|\./);
-      var pathPieces = path.split(/\/|\./);
+      let matchPieces = route.path.split(/\/|\./);
+      let pathPieces = path.split(/\/|\./);
       
       // If route path is '/{.*}'
       if (matchPieces.length == 2 && matchPieces[0] === '' && /{.*\*}/.test(matchPieces[1])) {
@@ -53,8 +53,8 @@ Server.prototype.get = function(path){
       }
       // If route path is more complex, e.g. '/files/{file}/me.jpg'
       else {
-        var nestedParams = {};
-        var test = matchPieces.every(function(c,i,a){
+        let nestedParams = {};
+        let test = matchPieces.every(function(c,i,a){
           if (/{.*}/.test(c)) {
             nestedParams[c.slice(1,-1)] = pathPieces[i];
             c = pathPieces[i];
