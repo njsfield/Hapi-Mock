@@ -11,5 +11,5 @@ Winner = **Route 2**.
 
 ## Goal 
 
-Demonstrate how routes can be compared against a live get request path to match the more specific route.
+Demonstrate how routes can be compared against a live get request path to match the more specific route.  
 Use a fake .get method (like server.inject)
